@@ -12,12 +12,13 @@ int divide(int x, int y){
   return x/y;
 }
 
+// a class that returns the distance between the origin and the point
 class Point {
   public:
   double x;
   double y;
 
-  int distance_to_origin(){
+  double distance_to_origin(){
     return y-x;
   }
 };
@@ -39,8 +40,8 @@ int main()
   
   Point p;
   p.x = 3.5;
-  p.y = 6.5;
-  std::cout << "The distance is " << p.distance_to_origin();
+  p.y = 6.4;
+  std::cout << "The distance is " << p.distance_to_origin() <<std::endl;
   std::cout << "a" <<std::endl;
   return 0;
 }

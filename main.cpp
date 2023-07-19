@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cmath>
+#include <vector>
 
 int subtract(int x, int y) {
   return x-y;
@@ -39,6 +40,7 @@ class Point {
 
   friend class Line;
   friend class Triangle;
+  friend class Polygon;
 
 };
 
@@ -80,6 +82,8 @@ class Triangle {
     p2 = point2;
     p3 = point3;
   }
+
+  //Problem 6
   double area() const{
     double side_1 = p1.distance_to_point(p2);
     double side_2 = p2.distance_to_point(p3);
@@ -87,6 +91,27 @@ class Triangle {
     double s = (side_1+side_2+side_3)/2;
     double area = sqrt(s*(s-side_1)*(s-side_2)*(s-side_3));
     return area;
+  }
+};
+
+class Polygon {
+  private:
+  std::vector<Point> p;
+
+  public:
+  Polygon(std::vector<Point> point) {
+    this -> p = point;
+  }
+
+  //Problem 7
+  double area() const{
+    double sum = 0;
+    for (int i=0; i<(p.size()-2); i++) {
+      Triangle t(p[i], p[i+1], p[i+2]);
+      double x = t.area();
+      sum += x;
+    }
+      return sum;
   }
 };
 
@@ -109,6 +134,8 @@ int main()
   Point p1(3, 1);
   Point p2(1,1);
   Point p3(1, 4);
+  Point p4(3, 4);
+  Point p5(2,6);
 
   std::cout <<"Problem 1 and 2"<<std::endl;
 
@@ -133,6 +160,12 @@ int main()
   Triangle triangle(p1, p2, p3);
   std::cout << "Area: " << triangle.area() << std::endl << std::endl;
 
+  //Problem 7
+  std::vector<Point> poly = {p1, p2, p3, p4, p5};
+  Polygon polygon(poly);
+  std::cout << "Area of Polygon: " << polygon.area() << std::endl << std::endl;
+
+  
 
   std::cout << "a" <<std::endl;
   return 0;

@@ -20,30 +20,74 @@ class Point {
   double y;
 
   public:
-  Point(double x, double y){
-  this ->x=x;
-  this ->y=y;
+  Point(double x_val, double y_val){
+  this -> x=x_val;
+  this -> y=y_val;
   }
 
-  double distance_to_origin(){
+  //Problem 1
+  double distance_to_origin() const{
     return sqrt(pow(x,2)+pow(y,2));
   }
 
-  double distance_to_point(){
-    return sqrt(pow(x,2)+pow(y,2));
+  //Problem 2
+  double distance_to_point(Point p) const{
+    double x_2 = x - p.x;
+    double y_2 = y - p.y;
+    return sqrt(pow(x_2,2)+pow(y_2,2));
   }
+
+  friend class Line;
+  friend class Triangle;
+
 };
-
 
 class Line {
   private:
-  array x;
-  array y;
+  Point p1;
+  Point p2;
 
   public:
+  Line(const Point &point1, const Point &point2): p1(point1), p2(point2) {
+    p1 = point1;
+    p2 = point2;
+  }
+ 
+  //Problem 3
+  double length() const{
+    return p1.distance_to_point(p2);
+  }
 
-  
+  //Problem 4
+  double distance_to_point(const Point &p) const{
+    double dx = p2.x - p1.x;
+    double dy = p2.y - p1.y;
+    double numerator = abs(dy*p.x - dx*p.y + p2.x*p1.y - p2.y*p1.x);
+    double denominator = sqrt(pow(dx,2)+pow(dy,2));
+    return numerator/denominator;
+  }
+};
 
+class Triangle {
+  private:
+  Point p1;
+  Point p2;
+  Point p3;
+
+  public:
+  Triangle(const Point &point1, const Point &point2, const Point &point3): p1(point1), p2(point2), p3(point3) {
+    p1 = point1;
+    p2 = point2;
+    p3 = point3;
+  }
+  double area() const{
+    double side_1 = p1.distance_to_point(p2);
+    double side_2 = p2.distance_to_point(p3);
+    double side_3 = p3.distance_to_point(p1);
+    double s = (side_1+side_2+side_3)/2;
+    double area = sqrt(s*(s-side_1)*(s-side_2)*(s-side_3));
+    return area;
+  }
 };
 
 int main()
@@ -59,10 +103,37 @@ int main()
   std::cout <<"The answer for y/x is " << y/x << std::endl;
   std::cout <<"y - z = " << subtract(y,z) << std::endl;
   std::cout <<"y*z = " << multiply(y,z) <<std::endl;
-  std::cout <<"y/z = " << divide(y,z) <<std::endl;
-  
-  Point p(3.5,4.5);
-  std::cout << p.distance_to_origin()<<std::endl;
+  std::cout <<"y/z = " << divide(y,z) <<std::endl<<std::endl;
+
+
+  Point p1(3, 1);
+  Point p2(1,1);
+  Point p3(1, 4);
+
+  std::cout <<"Problem 1 and 2"<<std::endl;
+
+  // Problem 1
+  std::cout << "distance_to_origin: " << p1.distance_to_origin() << std::endl;
+
+  //Problem 2
+  std::cout << "distance_to_point: " << p1.distance_to_point(p2) << std::endl<<std::endl;
+
+  std::cout << "Problem 3 and 4" << std::endl;
+
+  // Problem 3
+  Line line(p1, p2);
+  std::cout << "Line length: " << line.length() << std::endl;
+
+  // Problem 4
+  std::cout << "Distance to line: " << line.distance_to_point(p3) << std::endl << std::endl;
+
+  std::cout << "Problem 6" <<std::endl;
+
+  //Problem 6
+  Triangle triangle(p1, p2, p3);
+  std::cout << "Area: " << triangle.area() << std::endl << std::endl;
+
+
   std::cout << "a" <<std::endl;
   return 0;
 }

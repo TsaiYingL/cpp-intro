@@ -26,6 +26,14 @@ class Point {
   this -> y=y_val;
   }
 
+  double getx() const {
+    return x;
+  }
+
+  double gety() const {
+    return y;
+  }
+
   //Problem 1
   double distance_to_origin() const{
     return sqrt(pow(x,2)+pow(y,2));
@@ -37,11 +45,6 @@ class Point {
     double y_2 = y - p.y;
     return sqrt(pow(x_2,2)+pow(y_2,2));
   }
-
-  friend class Line;
-  friend class Triangle;
-  friend class Polygon;
-
 };
 
 class Line {
@@ -62,9 +65,9 @@ class Line {
 
   //Problem 4
   double distance_to_point(const Point &p) const{
-    double dx = p2.x - p1.x;
-    double dy = p2.y - p1.y;
-    double numerator = abs(dy*p.x - dx*p.y + p2.x*p1.y - p2.y*p1.x);
+    double dx = p2.getx() - p1.getx();
+    double dy = p2.gety() - p1.gety();
+    double numerator = abs(dy*p.getx() - dx*p.gety() + p2.getx()*p1.gety() - p2.gety()*p1.getx());
     double denominator = sqrt(pow(dx,2)+pow(dy,2));
     return numerator/denominator;
   }
@@ -113,7 +116,36 @@ class Polygon {
     }
       return sum;
   }
+
+  //Problem 8
+  double perimeter() const {
+    double sum = 0;
+    for (int i=0; i<(p.size()-1); i++) {
+      Line l(p[1],p[i+1]);
+      double x = l.length();
+      sum += x;
+    }
+    return sum;
+  }
 };
+
+//class AUV {
+  //private:
+  //std::string name;
+  //Point p;
+  //double depth = 0;
+  //double heading = 0;
+  //std::array<double,3> speed;
+  //double angular_speed;
+
+  //public:
+
+
+//}
+
+//Problem
+
+
 
 int main()
 {
@@ -165,7 +197,7 @@ int main()
   Polygon polygon(poly);
   std::cout << "Area of Polygon: " << polygon.area() << std::endl << std::endl;
 
-  
+
 
   std::cout << "a" <<std::endl;
   return 0;

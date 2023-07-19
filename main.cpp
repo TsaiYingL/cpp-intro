@@ -1,6 +1,8 @@
 #include <iostream>
 #include <cmath>
 #include <vector>
+#include <iostream>
+#include "Point.hpp"
 
 int subtract(int x, int y) {
   return x-y;
@@ -14,38 +16,6 @@ int divide(int x, int y){
   return x/y;
 }
 
-// a class that returns the distance between the origin and the point
-class Point {
-  private:
-  double x;
-  double y;
-
-  public:
-  Point(double x_val, double y_val){
-  this -> x=x_val;
-  this -> y=y_val;
-  }
-
-  double getx() const {
-    return x;
-  }
-
-  double gety() const {
-    return y;
-  }
-
-  //Problem 1
-  double distance_to_origin() const{
-    return sqrt(pow(x,2)+pow(y,2));
-  }
-
-  //Problem 2
-  double distance_to_point(Point p) const{
-    double x_2 = x - p.x;
-    double y_2 = y - p.y;
-    return sqrt(pow(x_2,2)+pow(y_2,2));
-  }
-};
 
 class Line {
   private:
@@ -59,15 +29,15 @@ class Line {
   }
  
   //Problem 3
-  double length() const{
+  double length() {
     return p1.distance_to_point(p2);
   }
 
   //Problem 4
-  double distance_to_point(const Point &p) const{
-    double dx = p2.getx() - p1.getx();
-    double dy = p2.gety() - p1.gety();
-    double numerator = abs(dy*p.getx() - dx*p.gety() + p2.getx()*p1.gety() - p2.gety()*p1.getx());
+  double distance_to_point(Point &p) {
+    double dx = p2.x() - p1.x();
+    double dy = p2.y() - p1.y();
+    double numerator = abs(dy*p.x() - dx*p.y() + p2.x()*p1.y() - p2.y()*p1.x());
     double denominator = sqrt(pow(dx,2)+pow(dy,2));
     return numerator/denominator;
   }
@@ -87,7 +57,7 @@ class Triangle {
   }
 
   //Problem 6
-  double area() const{
+  double area() {
     double side_1 = p1.distance_to_point(p2);
     double side_2 = p2.distance_to_point(p3);
     double side_3 = p3.distance_to_point(p1);

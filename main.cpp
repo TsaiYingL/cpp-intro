@@ -3,6 +3,7 @@
 #include <vector>
 #include "Point.hpp"
 #include "Line.hpp"
+#include "Triangle.hpp"
 
 int subtract(int x, int y) {
   return x-y;
@@ -43,7 +44,7 @@ int divide(int x, int y){
   }
 };  */
 
-class Triangle {
+/* class Triangle {
   private:
   Point p1;
   Point p2;
@@ -65,7 +66,7 @@ class Triangle {
     double area = sqrt(s*(s-side_1)*(s-side_2)*(s-side_3));
     return area;
   }
-};
+}; */
 
 class Polygon {
   private:

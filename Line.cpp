@@ -8,7 +8,7 @@ double Line::length() {
     return p1.distance_to_point(p2);
 }
 
-double Line::distance_to_point(Point p) {
+double Line::distance_to_point(Point &p) {
     double dx = p2.x() - p1.x();
     double dy = p2.y() - p1.y();
     double numerator = std::abs(dy*p.x() - dx*p.y() + p2.x()*p1.y() - p2.y()*p1.x());

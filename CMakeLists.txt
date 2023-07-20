@@ -10,4 +10,5 @@ add_executable(MyFirstExecutable
   main.cpp
   Point.cpp
   Line.cpp
+  Triangle.cpp
 )

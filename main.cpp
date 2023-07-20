@@ -1,7 +1,6 @@
 #include <iostream>
 #include <cmath>
 #include <vector>
-#include <iostream>
 #include "Point.hpp"
 
 int subtract(int x, int y) {

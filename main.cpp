@@ -2,6 +2,7 @@
 #include <cmath>
 #include <vector>
 #include "Point.hpp"
+#include "Line.hpp"
 
 int subtract(int x, int y) {
   return x-y;
@@ -16,7 +17,7 @@ int divide(int x, int y){
 }
 
 
-class Line {
+/* class Line {
   private:
   Point p1;
   Point p2;
@@ -40,7 +41,7 @@ class Line {
     double denominator = sqrt(pow(dx,2)+pow(dy,2));
     return numerator/denominator;
   }
-};
+};  */
 
 class Triangle {
   private:

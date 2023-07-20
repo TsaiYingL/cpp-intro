@@ -1,13 +1,14 @@
 #pragma once
-#include Point.hpp
+#include "Point.hpp"
 
 class Line {
-    private:
+private:
     Point p1;
     Point p2;
 
-    public:
-    Point 
+public:
+    Line(Point pa, Point pb);
+
     double length();
-    double distnce_to_point(Point p);
-}
+    double distance_to_point(Point &p);
+};

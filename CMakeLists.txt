@@ -9,4 +9,5 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 add_executable(MyFirstExecutable
   main.cpp
   Point.cpp
+  Line.cpp
 )

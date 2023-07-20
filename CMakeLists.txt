@@ -11,4 +11,5 @@ add_executable(MyFirstExecutable
   Point.cpp
   Line.cpp
   Triangle.cpp
+  Polygon.cpp
 )

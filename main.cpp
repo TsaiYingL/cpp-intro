@@ -4,6 +4,7 @@
 #include "Point.hpp"
 #include "Line.hpp"
 #include "Triangle.hpp"
+#include "Polygon.hpp"
 
 int subtract(int x, int y) {
   return x-y;
@@ -68,7 +69,7 @@ int divide(int x, int y){
   }
 }; */
 
-class Polygon {
+/* class Polygon {
   private:
   std::vector<Point> p;
 
@@ -98,7 +99,7 @@ class Polygon {
     }
     return sum;
   }
-};
+}; */
 
 //class AUV {
   //private:

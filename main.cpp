@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cmath>
 #include <vector>
+#include <array>
 #include "Point.hpp"
 #include "Line.hpp"
 #include "Triangle.hpp"
@@ -101,21 +102,36 @@ int divide(int x, int y){
   }
 }; */
 
-//class AUV {
-  //private:
-  //std::string name;
-  //Point p;
-  //double depth = 0;
-  //double heading = 0;
-  //std::array<double,3> speed;
-  //double angular_speed;
+class AUV {
+  private:
+  std::string name;
+  Point position;
+  double depth = 0;
+  double heading = 0;
+  std::array<double,3> speed;
+  double angular_speed;
 
-  //public:
+  public:
+  AUV(const std::string& name, const Point& position, double depth, double heading, const std::array<double, 3>& speed, double angular_speed):
+   name(name), position(position), depth(depth), heading(heading), speed(speed), angular_speed(angular_speed) {}
+  
+  void step(double dt) {
+        position.x += speed[0] * dt; // Forward movement
+        position.y += speed[1] * dt; // Lateral movement
+        position.z += speed[2] * dt; // Vertical movement
+    }
+    
+    void apply_acceleration(const std::array<double, 3>& acceleration, double dt) {
+        speed[0] += acceleration[0] * dt; // Forward acceleration
+        speed[1] += acceleration[1] * dt; // Lateral acceleration
+        speed[2] += acceleration[2] * dt; // Vertical acceleration
+    }
 
-
-//}
-
-//Problem
+    
+    void apply_angular_acceleration(double angular_acceleration, double dt) {
+        angular_speed += angular_acceleration * dt;
+    }
+};
 
 
 
